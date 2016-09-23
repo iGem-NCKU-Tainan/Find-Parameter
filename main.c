@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+#include <stdlib.h>
 #define maxTimeHeight 10000
 #define number 12  // input 12 data
 #define t 3  // 3 minutes timer
 #define outputName "result.txt"
-#define file "D.csv"
 #define averageGap 25
 
 int OD_time[maxTimeHeight];
@@ -23,7 +23,15 @@ int toNum(char *);
 int findAvgMax(int,int);
 	
 int main(){
-	FILE *pFile = fopen(file,"r");	// load data
+	// load data
+	char file[50] = "./data/A.csv", c;
+	printf("Please Input file name (A~H)? ");
+	scanf("%c",&c); file[7]=c;
+	FILE *pFile = fopen(file,"r");
+	if(pFile==NULL) {
+		printf("No such file\n");
+		exit(0);
+	}
 	// input data
 	int i=0,j=0,k;
 	char str[10000];
